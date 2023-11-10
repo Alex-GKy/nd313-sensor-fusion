@@ -1,0 +1,74 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++ build active file",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/g++"
+		},
+		{
+			"type": "cmake",
+			"label": "CMake: build",
+			"command": "build",
+			"targets": [
+				"all"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "CMake template build task"
+		},
+		{
+			"label": "makeTask", 
+			"type": "shell",
+			"command": "make",
+			"options": {
+				"cwd": "./build"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "CMake template build task"
+		}, 
+		{
+			"label": "runEnvironment", 
+			"type": "shell", 
+			"command": "./environment", 
+			"options": {
+				"cwd": "./build"
+			}
+		},
+		{
+			"label": "Build and Run",
+			"type": "shell",
+			// This is a workaround since VSCode doesn't support direct task chaining. 
+			// It simply echoes a string, but its real purpose is to depend on other tasks.
+			"command": "echo 'Running build and execution tasks...'",
+			"dependsOn": ["make", "runEnvironment"],
+			// Setting 'dependsOrder' to 'sequence' ensures that 'make' completes before 'runEnvironment' starts.
+			"dependsOrder": "sequence"
+		}
+	]
+}
