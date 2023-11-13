@@ -1,6 +1,10 @@
 {
-    "files.associations": {
-        "chrono": "cpp"
-    },
-    "cmake.configureOnOpen": true
+  "files.associations": {
+    "chrono": "cpp"
+  },
+  "cmake.configureOnOpen": true,
+
+  "editor.formatOnSave": true,
+  "C_Cpp.clang_format_path": "/path/to/your/clang-format", // Optional, set it if VSC doesn't automatically find clang-format
+  "C_Cpp.clang_format_style": "{ BasedOnStyle: LLVM, ColumnLimit: 80 }"
 }
